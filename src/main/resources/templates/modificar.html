@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos de la Persona</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    
+    </head>
+   
+    <body>
+   <div class="container mt-6">
+        <h2>Datos de la Persona</h2>
+        <a  class ="btn btn-danger"th:href="@{/p}">Regresar</a>
+        <br/>
+      
+        <form th:action="@{/guardar}" method="post" th:object="${persona}">
+                <input type="hidden" class="form-control"  name="idPersona" th:field="*{idPersona}"/>
+            <br/>
+            <label  for="nombre">Nombre:</label>
+            <input type="text"  class="form-control"  name="nombre" th:field="*{nombre}"/>
+            <span  th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error del nombre</span>
+            <br/>
+            <label for="apellido">Apellido:</label>
+            <input type="text" class="form-control"   name="apellido" th:field="*{apellido}"/>
+            <span  th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error del apellido</span>
+            <br/>
+            <label for="email">Email:</label>
+            <input type="email"  class="form-control" name="email" th:field="*{email}"/>
+            <span  th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error del email</span>
+            <br/>
+            <label for="telefono">Telefono:</label>
+            <input type="tel"  class=form-control  name="telefono" th:field="*{telefono}"/>
+            <span  th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error del telefono</span>
+            <br/>
+            <input type="submit" class="btn btn-primary btn-block" name="guardar" value="Guardar"/>
+            </div>
+        </form>
+        </div>
+    </body>
+</html>

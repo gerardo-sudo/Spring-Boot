@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Inicio</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    
+	
+  </head>
+  
+<body>
+<div class="container mt-4">
+       <a class="btn btn-danger btn-block"    th:href="@{/agregar}">Crear Persona</a>
+       
+        
+        <div th:if="${personas != null and !personas.empty}">
+        
+            <table class="table table-stryped">
+            <thead>
+                <tr>
+                    <th >Nombre</th>
+                    <th >Apellido</th>
+                    <th >Email</th>
+                    <th >Telefono</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    
+                </tr>
+                </thead>
+                     
+                <tr th:each="persona : ${personas}">
+                    <td th:text="${persona.nombre}">Mostrar Nombre</td>
+                    <td th:text="${persona.apellido}">Mostrar Apellido</td>
+                    <td th:text="${persona.email}">Mostrar Email</td>
+                    <td th:text="${persona.telefono}">Mostrar Teléfono</td>
+                    <td> <a class="btn btn-warning " th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar" /> </td>
+                    <td> <a class="btn btn-danger " th:href="@{/eliminar/} + ${persona.idPersona}" th:text="Eliminar" /> </td>
+                    
+                </tr>
+                
+            </table>
+        </div>
+        <div th:if="${personas == null or personas.empty}">
+            La lista de personas está vacía
+        </div>
+        </div>
+	 <footer th:fragment="footer" class="bg-warning text-white mt-5 p-5">
+            <div class="container">
+                <div class="col">
+                    <p class="lead text-center">
+                        
+                        
+                        <span> Gerardo David &copy; <a href="https://www.linkedin.com/in/gerardo-enrique-david-vega-3a8a34129/" target="_blank">linkedin</a></span>
+                    </p>
+                </div>
+            </div>
+	
+</body>
+</html>
